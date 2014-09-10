@@ -26,5 +26,6 @@ class Order {
     }
 
     static constraints = {
+        number unique: true
     }
 }

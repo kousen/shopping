@@ -3,18 +3,24 @@ package s2gx
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
- */
 @TestFor(Customer)
 class CustomerSpec extends Specification {
+    Customer c = new Customer(name: 'name')
 
     def setup() {
+        mockForConstraintsTests(Customer)
     }
 
-    def cleanup() {
+    void "sample customer is valid"() {
+        expect: c.validate()
     }
 
-    void "test something"() {
+    void 'empty name gives blank error'() {
+        when:
+        c.name = '  '
+
+        then:
+        !c.validate()
+        'blank' == c.errors['name']
     }
 }
