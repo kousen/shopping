@@ -2,7 +2,7 @@ package s2gx
 
 import grails.rest.Resource
 
-@Resource(formats = ['json', 'xml'])
+@Resource
 class Product {
     String name
     BigDecimal price
