@@ -1,0 +1,28 @@
+// GET products in JSON form
+curl -i -H "Accept: application/json" localhost:8080/shopping/products
+
+// GET product 1 in JSON form
+curl -i -H "Accept: application/json" localhost:8080/shopping/products/1
+
+// GET with format rather than accept header
+curl -i localhost:8080/shopping/products/1.json
+
+// works for XML too
+curl -i localhost:8080/shopping/products/1.xml
+
+// POST to insert a new product
+curl -i -X POST -H "Content-Type: application/json" -d '{"name":"mitt", "price":19.99}' localhost:8080/shopping/products
+
+// Use PUT to update the product
+curl -i -X PUT -H "Content-Type: application/json" -d '{"price":24.99}' localhost:8080/shopping/products/4
+
+// Use DELETE to remove the product
+curl -i -X DELETE localhost:8080/shopping/products/4
+
+// Nested examples
+curl -i -H "Accept: application/json" localhost:8080/shopping/customers
+curl -i -H "Accept: application/json" localhost:8080/shopping/customers/1/orders
+curl -i -H "Accept: application/json" localhost:8080/shopping/customers/1/orders/2
+
+
+

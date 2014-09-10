@@ -1,5 +1,8 @@
 package s2gx
 
+import grails.rest.Resource
+
+@Resource(formats = ['json', 'xml'])
 class Product {
     String name
     BigDecimal price

@@ -1,7 +1,10 @@
 package s2gx
 
+import grails.rest.Resource
+
 import java.text.NumberFormat
 
+@Resource(formats = ['json', 'xml'])
 class Order {
     String number
 
