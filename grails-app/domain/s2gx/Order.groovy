@@ -4,7 +4,7 @@ import grails.rest.Resource
 
 import java.text.NumberFormat
 
-@Resource
+@Resource(formats = ['json', 'xml'])
 class Order {
     String number
 

@@ -19,3 +19,10 @@ curl -i -X PUT -H "Content-Type: application/json" -d '{"price":24.99}' localhos
 // Use DELETE to remove the product
 curl -i -X DELETE localhost:8080/shopping/products/4
 
+// Nested examples
+curl -i -H "Accept: application/json" localhost:8080/shopping/customers
+curl -i -H "Accept: application/json" localhost:8080/shopping/customers/1/orders
+curl -i -H "Accept: application/json" localhost:8080/shopping/customers/1/orders/2
+
+
+
