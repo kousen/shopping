@@ -15,6 +15,9 @@ class OrderController {
     }
 
     def show(Order orderInstance) {
+        orderInstance.link rel:'customer',
+                href: g.link(resource:'customer',
+                        params: [orderId: orderInstance.id])
         respond orderInstance
     }
 
