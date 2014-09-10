@@ -3,18 +3,33 @@ package s2gx
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
- */
 @TestFor(Product)
 class ProductSpec extends Specification {
+    Product p = new Product(name: 'p0', price: 1)
 
     def setup() {
+        mockForConstraintsTests(Product)
     }
 
-    def cleanup() {
+    void "sample product is valid"() {
+        expect: p.validate()
     }
 
-    void "test something"() {
+    void 'blank names are invalid'() {
+        when:
+        p.name = ' '
+
+        then:
+        !p.validate()
+        'blank' == p.errors['name']
+    }
+
+    void 'negative prices are bad'() {
+        when:
+        p.price = -1
+
+        then:
+        !p.validate()
+        'min' == p.errors['price']
     }
 }
