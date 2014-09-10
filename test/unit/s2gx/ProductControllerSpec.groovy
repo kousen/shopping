@@ -1,20 +1,44 @@
 package s2gx
 
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
- */
 @TestFor(ProductController)
+@Mock(Product)
 class ProductControllerSpec extends Specification {
 
-    def setup() {
+    void setup() {
+        Product baseball = new Product(name: 'baseball',
+                price: 5.99).save(failOnError: true)
+        Product football = new Product(name: 'football',
+                price: 12.99).save(failOnError: true)
+        Product basketball = new Product(name: 'basketball',
+                price: 15.99).save(failOnError: true)
     }
 
-    def cleanup() {
+    void "GET returns JSON form of products"() {
+        when:
+        controller.json()
+
+        then:
+        println response.text
+        println response.json
+        response.json.size() == 3
+        response.json.name.sort() ==
+            ['baseball', 'basketball', 'football']
+        response.json.price.sum() == 5.99 + 12.99 + 15.99
     }
 
-    void "test something"() {
+    void "GET with custom render returns products"() {
+        when:
+        controller.custom()
+
+        then:
+        println response.text
+        println response.json
+        response.json.name.sort() ==
+            ['baseball', 'basketball', 'football']
+        response.json.price.sum() == 5.99 + 12.99 + 15.99
     }
 }
