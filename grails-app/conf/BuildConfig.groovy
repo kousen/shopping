@@ -71,7 +71,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
 
         // console plugin
-        compile ":console:1.4.5"
+        compile ":console:1.5.1"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
